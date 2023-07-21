@@ -3,7 +3,7 @@ HTTP Rest API Music using library Express js. Tasks backend with Node js and Exp
 
 How to Use:
 - Clone this repository
-- run this command:
+- Run this comman to start the server:
 ```
 npm start
 ```
