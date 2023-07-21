@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const Songs = require('./models/Song');
-const Playlists = require('./models/Playlist');
+const Songs = require('./app/models/Song');
+const Playlists = require('./app/models/Playlist');
 
 const app = express();
 const port = 3000;
@@ -35,6 +35,17 @@ app.get('/songs/search', (req, res) => {
     res.status(200).json(songLists);
 });
 
+// Play Song by Title
+app.get('/songs/play', (req, res) => { 
+    const { title } = req.query;
+
+    const songLists = Songs.songs.filter(song => song.title.toLowerCase().includes(title.toLowerCase()));
+
+    songLists[0].playCount++;
+    
+    res.status(200).json({ message: 'Song is now playing.', songLists });
+});
+
 // Get Most Played Song
 app.get('/songs/most-played', (req, res) => {
     const songLists = Songs.songs.sort((song1, song2) => song2.playCount - song1.playCount);
@@ -50,12 +61,7 @@ app.post('/playlist', (req, res) => {
 
     Playlists.playlists.push(playlist);
 
-    res.status(201).json({ message: 'Playlist added successfully', playlist });
-});
-
-// Get all playlists with song
-app.get('/playlists', (req, res) => {
-    res.json(Playlists.playlists);
+    res.status(201).json({ message: 'Playlist created successfully', playlist });
 });
 
 // Add Song to Playlist
@@ -70,7 +76,12 @@ app.post('/playlist/song', (req, res) => {
 
     playList[index].song.push(songList[0]);
     
-    res.status(200).json( Playlists.playlists );
+    res.status(200).json({ message: 'Song added to playlist successfully.', playList });
+});
+
+// Get all playlists with song
+app.get('/playlists', (req, res) => {
+    res.json(Playlists.playlists);
 });
 
 // Get all song in playlist
