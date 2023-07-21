@@ -6,6 +6,6 @@ const router = express.Router();
 router.get('/playlists', playlistController.getAllPlaylists)
 router.get('/playlists/songs', playlistController.getSongPlaylists)
 router.post('/playlist', playlistController.createPlaylist)
-router.post('/playlist', playlistController.addSongPlaylist)
+router.post('/playlist/song', playlistController.addSongPlaylist)
   
 module.exports = router;
