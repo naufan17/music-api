@@ -3,7 +3,11 @@ HTTP Rest API Music using library Express js. Tasks backend with Node js and Exp
 
 How to setup local:
 - Clone this repository
-- Run this command to start the server:
+- Install all dependencies with this command:
+```
+npm install
+```
+- Start the server with this command:
 ```
 npm start
 ```
