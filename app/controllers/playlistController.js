@@ -2,7 +2,7 @@ const Playlists = require('../models/Playlist');
 const Songs = require('../models/Song');
   
 // Get all playlists with song
-exports.getAllPlaylists = (req, res) => {
+exports.getAllPlaylist = (req, res) => {
     if(Playlists.playlists.length > 0){
         res.status(200).json(Playlists.playlists);
     } else {
@@ -11,7 +11,7 @@ exports.getAllPlaylists = (req, res) => {
 }
 
 // Get all song in playlist
-exports.getSongPlaylists = (req, res) => {
+exports.getSongPlaylist = (req, res) => {
     const { title } = req.query;
 
     const playLists = Playlists.playlists.filter(playlist => playlist.title.toLowerCase().includes(title.toLowerCase()));

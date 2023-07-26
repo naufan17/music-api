@@ -1,7 +1,7 @@
 const Songs = require('../models/Song');
 
 // Get All Song
-exports.getAllSongs = (req, res) => { 
+exports.getAllSong = (req, res) => { 
     if(Songs.songs.length > 0){
         res.status(200).json(Songs.songs);
     } else {
@@ -10,7 +10,7 @@ exports.getAllSongs = (req, res) => {
 }
 
 // Search Song by Title
-exports.searchSongs = (req, res) => {
+exports.searchSong = (req, res) => {
     const { title } = req.query;
 
     const songLists = Songs.songs.filter(song => song.title.toLowerCase().includes(title.toLowerCase()));
@@ -23,7 +23,7 @@ exports.searchSongs = (req, res) => {
 }
 
 // Play Song by Title
-exports.playSongs = (req, res) => {
+exports.playSong = (req, res) => {
     const { title } = req.query;
 
     const songLists = Songs.songs.filter(song => song.title.toLowerCase().includes(title.toLowerCase()));
@@ -38,11 +38,11 @@ exports.playSongs = (req, res) => {
 }
 
 // Get Most Played Song
-exports.mostPlayedSongs = (req, res) => {
+exports.mostPlayedSong = (req, res) => {
     const songLists = Songs.songs.sort((song1, song2) => song2.playCount - song1.playCount);
     
     if(songLists.length > 0){
-        res.status(200).send(songLists);
+        res.status(200).json(songLists);
     } else {
         res.status(400).json({ mesage: 'Song not found' });
     }
