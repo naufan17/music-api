@@ -1,6 +1,5 @@
 const Songs = require('../models/Song');
 
-// Get All Song
 exports.getAllSong = (req, res) => { 
     const reqTitle  = req.query.title;
 
@@ -21,7 +20,6 @@ exports.getAllSong = (req, res) => {
     }
 }
 
-// Get Most Played Song
 exports.getMostPlayedSong = (req, res) => {
     const songLists = Songs.songs.sort((song1, song2) => song2.playCount - song1.playCount);
     
@@ -32,7 +30,6 @@ exports.getMostPlayedSong = (req, res) => {
     }
 }
 
-// Find Song by Id
 exports.getOneSong = (req, res) => {
     const { song_id } = req.params;
 
@@ -45,7 +42,6 @@ exports.getOneSong = (req, res) => {
     }
 }
 
-// Play Song by Id
 exports.playSong = (req, res) => {
     const { song_id } = req.params;
 
@@ -60,7 +56,6 @@ exports.playSong = (req, res) => {
     }
 }
 
-// Add Song
 exports.createSong = (req, res) => {
     const isEmpty = ![req.body.title, req.body.artists, req.body.album, req.body.duration, req.body.url].every(body => !body || Object.keys(body).length === 0);
 

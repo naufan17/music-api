@@ -2,6 +2,7 @@ const Playlists = [
     {
         playlist_id: "IDPL_20001",
         title: 'Top Song',
+        image: "https://media.istockphoto.com/id/1472421626/id/foto/rendering-3d-headphone-nirkabel-dengan-latar-belakang-biru.jpg?s=1024x1024&w=is&k=20&c=CrEj-FFvhiYjodBKrqf7HzMIjApIiUfIdvl5jTQf39E=",
         song: [    
             {
                 song_id: "IDVD_10001",
@@ -9,7 +10,7 @@ const Playlists = [
                 artists: ["Harry Styles"],
                 album: "Harry's House",
                 duration: "2:54",
-                url: "http://play",
+                image: "https://media.istockphoto.com/id/1141254399/id/foto/potret-wanita-kulit-hitam-muda-mendengarkan-musik-di-bawah-lampu-neon.jpg?s=1024x1024&w=is&k=20&c=PUCe0edhnblHz3yOn_2cQXlyrNBQOS-0L2ub_JJGUiE=",
                 playCount: 10000000
             },
             {
@@ -18,7 +19,7 @@ const Playlists = [
                 artists: ["Glass Animals"],
                 album: "Dreamland",
                 duration: "3:44",
-                url: "http://play",
+                image: "https://media.istockphoto.com/id/1141254399/id/foto/potret-wanita-kulit-hitam-muda-mendengarkan-musik-di-bawah-lampu-neon.jpg?s=1024x1024&w=is&k=20&c=PUCe0edhnblHz3yOn_2cQXlyrNBQOS-0L2ub_JJGUiE=",
                 playCount: 5000000
             }
         ]
@@ -26,6 +27,7 @@ const Playlists = [
     {
         playlist_id: "IDPL_20002",
         title: 'Top Global',
+        image: "https://media.istockphoto.com/id/1472421626/id/foto/rendering-3d-headphone-nirkabel-dengan-latar-belakang-biru.jpg?s=1024x1024&w=is&k=20&c=CrEj-FFvhiYjodBKrqf7HzMIjApIiUfIdvl5jTQf39E=",
         song: [    
             {
                 song_id: "IDVD_10007",
@@ -33,7 +35,7 @@ const Playlists = [
                 artists: ["Lil Nas X"],
                 album: "Montero",
                 duration: "2:13",
-                url: "http://play",
+                image: "https://media.istockphoto.com/id/1141254399/id/foto/potret-wanita-kulit-hitam-muda-mendengarkan-musik-di-bawah-lampu-neon.jpg?s=1024x1024&w=is&k=20&c=PUCe0edhnblHz3yOn_2cQXlyrNBQOS-0L2ub_JJGUiE=",
                 playCount: 300000
             },
             {
@@ -42,7 +44,7 @@ const Playlists = [
                 artists: ["Encanto Cast"],
                 album: "Encanto",
                 duration: "3:07",
-                url: "http://play",
+                image: "https://media.istockphoto.com/id/1141254399/id/foto/potret-wanita-kulit-hitam-muda-mendengarkan-musik-di-bawah-lampu-neon.jpg?s=1024x1024&w=is&k=20&c=PUCe0edhnblHz3yOn_2cQXlyrNBQOS-0L2ub_JJGUiE=",
                 playCount: 200000
             },
             {
@@ -51,7 +53,7 @@ const Playlists = [
                 artists: ["Ed Sheeran"],
                 album: "= (Equals)",
                 duration: "3:52",
-                url: "http://play",
+                image: "https://media.istockphoto.com/id/1141254399/id/foto/potret-wanita-kulit-hitam-muda-mendengarkan-musik-di-bawah-lampu-neon.jpg?s=1024x1024&w=is&k=20&c=PUCe0edhnblHz3yOn_2cQXlyrNBQOS-0L2ub_JJGUiE=",
                 playCount: 100000
             }
         ]

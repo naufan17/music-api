@@ -1,7 +1,6 @@
 const Playlists = require('../models/Playlist');
 const Songs = require('../models/Song');
   
-// Get all playlists with song
 exports.getAllPlaylist = (req, res) => {
     const reqTitle  = req.query.title;
 
@@ -22,7 +21,6 @@ exports.getAllPlaylist = (req, res) => {
     }        
 }
 
-// Get all song in playlist
 exports.getSongPlaylist = (req, res) => {
     const { playlist_id } = req.params;
 
@@ -35,7 +33,6 @@ exports.getSongPlaylist = (req, res) => {
     }
 }
 
-// Add Playlist
 exports.createPlaylist = (req, res) => {
     const isEmpty = ![req.body.title].every(body => !body || Object.keys(body).length === 0);
 
@@ -52,7 +49,6 @@ exports.createPlaylist = (req, res) => {
     }
 }
 
-// Add Song to Playlist
 exports.addSongPlaylist = (req, res) => {
     const { titleSong, titlePlaylist } = req.body;
 
