@@ -4,7 +4,7 @@ const songRoutes = require('./app/routes/songRoutes');
 const playlistRoutes = require('./app/routes/playlistRoutes');
 
 const app = express();
-const port = 3000;
+const port = 8000;
 
 app.use(express.json());
 app.use(bodyParser.json());

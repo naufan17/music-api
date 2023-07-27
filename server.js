@@ -4,7 +4,7 @@ const Songs = require('./app/models/Song');
 const Playlists = require('./app/models/Playlist');
 
 const app = express();
-const port = 3000;
+const port = 8000;
 
 app.use(express.json());
 app.use(bodyParser.json());

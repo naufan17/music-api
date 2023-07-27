@@ -3,18 +3,30 @@ const Songs = require('../models/Song');
   
 // Get all playlists with song
 exports.getAllPlaylist = (req, res) => {
-    if(Playlists.playlists.length > 0){
-        res.status(200).json(Playlists.playlists);
+    const reqTitle  = req.query.title;
+
+    if(reqTitle && reqTitle.trim() !== '') {
+        const playLists = Playlists.playlists.filter(playlist => playlist.title.toLowerCase().includes(reqTitle.toLowerCase()));
+
+        if(playLists.length > 0){
+            res.status(200).json({ playlists: playLists });
+        } else {
+            res.status(400).json({ mesage: 'Playlist not found' });
+        }
     } else {
-        res.status(400).json({ mesage: 'Playlist not found' });
-    }
+        if(Playlists.playlists.length > 0){
+            res.status(200).json(Playlists);
+        } else {
+            res.status(400).json({ mesage: 'Playlist not found' });
+        }
+    }        
 }
 
 // Get all song in playlist
 exports.getSongPlaylist = (req, res) => {
-    const { title } = req.query;
+    const { playlist_id } = req.params;
 
-    const playLists = Playlists.playlists.filter(playlist => playlist.title.toLowerCase().includes(title.toLowerCase()));
+    const playLists = Playlists.playlists.filter(playlist => playlist.playlist_id === playlist_id);
     
     if(playLists.length > 0){
         res.status(200).json(playLists);

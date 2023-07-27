@@ -2,49 +2,61 @@ const Songs = require('../models/Song');
 
 // Get All Song
 exports.getAllSong = (req, res) => { 
-    if(Songs.songs.length > 0){
-        res.status(200).json(Songs.songs);
-    } else {
-        res.status(400).json({ mesage: 'Song not found' });
-    }
-}
+    const reqTitle  = req.query.title;
 
-// Search Song by Title
-exports.searchSong = (req, res) => {
-    const { title } = req.query;
-
-    const songLists = Songs.songs.filter(song => song.title.toLowerCase().includes(title.toLowerCase()));
+    if(reqTitle && reqTitle.trim() !== '') {
+        const songLists = Songs.songs.filter(song => song.title.toLowerCase().includes(reqTitle.toLowerCase()));
     
-    if(songLists.length > 0){
-        res.status(200).json(songLists);
+        if(songLists.length > 0){
+            res.status(200).json({ songs: songLists });
+        } else {
+            res.status(404).json({ mesage: 'Song not found' });
+        }
     } else {
-        res.status(400).json({ mesage: 'Song not found' });
-    }
-}
-
-// Play Song by Title
-exports.playSong = (req, res) => {
-    const { title } = req.query;
-
-    const songLists = Songs.songs.filter(song => song.title.toLowerCase().includes(title.toLowerCase()));
-
-    songLists[0].playCount++;
-    
-    if(songLists.length > 0){
-        res.status(200).json({ message: 'Song is now playing.', songLists });
-    } else {
-        res.status(400).json({ mesage: 'Song not found' });
+        if(Songs.songs.length > 0){
+            res.status(200).json(Songs);
+        } else {
+            res.status(404).json({ mesage: 'Song not found' });
+        }
     }
 }
 
 // Get Most Played Song
-exports.mostPlayedSong = (req, res) => {
+exports.getMostPlayedSong = (req, res) => {
     const songLists = Songs.songs.sort((song1, song2) => song2.playCount - song1.playCount);
     
     if(songLists.length > 0){
-        res.status(200).json(songLists);
+        res.status(200).json({ songs: songLists });
     } else {
-        res.status(400).json({ mesage: 'Song not found' });
+        res.status(404).json({ mesage: 'Song not found' });
+    }
+}
+
+// Find Song by Id
+exports.getOneSong = (req, res) => {
+    const { song_id } = req.params;
+
+    const songLists = Songs.songs.filter(song => song.song_id === song_id);
+
+    if(songLists.length > 0){
+        res.status(200).json({ song: songLists });
+    } else {
+        res.status(404).json({ mesage: 'Song not found' });
+    }
+}
+
+// Play Song by Id
+exports.playSong = (req, res) => {
+    const { song_id } = req.params;
+
+    const songLists = Songs.songs.filter(song => song.song_id === song_id);
+
+    songLists[0].playCount++;
+    
+    if(songLists.length > 0){
+        res.status(200).json({ message: 'Song is now playing.', song: songLists });
+    } else {
+        res.status(404).json({ mesage: 'Song not found' });
     }
 }
 
@@ -61,6 +73,6 @@ exports.createSong = (req, res) => {
     
         res.status(201).json({ message: 'Song added successfully', song });    
     } else {
-        res.status(400).json({ mesage: 'Request body song not fully completed' });
+        res.status(404).json({ mesage: 'Request body song not fully completed' });
     }
 }
