@@ -50,15 +50,27 @@ exports.createPlaylist = (req, res) => {
 }
 
 exports.addSongPlaylist = (req, res) => {
-    const { titleSong, titlePlaylist } = req.body;
+    const { playlist_id, song_id } = req.params;
 
-    const songList = Songs.songs.filter(song => song.title.toLowerCase().includes(titleSong.toLowerCase()));
+    const songList = Songs.songs.filter(song => song.song_id.toLowerCase().includes(song_id.toLowerCase()));
 
-    const playList = Playlists.playlists.filter(playlist => playlist.title.toLowerCase().includes(titlePlaylist.toLowerCase()));
+    const playList = Playlists.playlists.filter(playlist => playlist.playlist_id.toLowerCase().includes(playlist_id.toLowerCase()));
 
-    const index = Playlists.playlists.findIndex(playlist => playlist.title.toLowerCase().includes(titlePlaylist.toLowerCase()));
-
-    playList[index].song.push(songList[0]);
+    playList[0].song.push(songList[0]);
     
-    res.status(200).header("Access-Control-Allow-Origin", "*").json({ message: 'Song added to playlist successfully.', playList });
+    res.status(201).header("Access-Control-Allow-Origin", "*").json({ message: 'Song added to playlist successfully.', playList });
+}
+
+exports.deleteSongPlaylist = (req, res) => {
+    const { playlist_id, song_id } = req.params;
+
+    const playList = Playlists.playlists.filter(playlist => playlist.playlist_id.toLowerCase().includes(playlist_id.toLowerCase()));
+
+    const index = Playlists.playlists[0].song.findIndex(song => song.song_id.toLowerCase().includes(song_id.toLowerCase()));
+
+    playList[0].song.splice(index, 1);
+
+    console.log(playList[0].song)
+    
+    res.status(200).header("Access-Control-Allow-Origin", "*").json({ message: 'Song deleted in playlist successfully.', playList });
 }
