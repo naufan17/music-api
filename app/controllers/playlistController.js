@@ -8,15 +8,15 @@ exports.getAllPlaylist = (req, res) => {
         const playLists = Playlists.playlists.filter(playlist => playlist.title.toLowerCase().includes(reqTitle.toLowerCase()));
 
         if(playLists.length > 0){
-            res.status(200).header("Access-Control-Allow-Origin", "*").json({ playlists: playLists });
+            res.status(200).json({ playlists: playLists });
         } else {
-            res.status(400).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Playlist not found' });
+            res.status(400).json({ mesage: 'Playlist not found' });
         }
     } else {
         if(Playlists.playlists.length > 0){
-            res.status(200).header("Access-Control-Allow-Origin", "*").json(Playlists);
+            res.status(200).json(Playlists);
         } else {
-            res.status(400).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Playlist not found' });
+            res.status(400).json({ mesage: 'Playlist not found' });
         }
     }        
 }
@@ -27,9 +27,9 @@ exports.getSongPlaylist = (req, res) => {
     const playLists = Playlists.playlists.filter(playlist => playlist.playlist_id === playlist_id);
     
     if(playLists.length > 0){
-        res.status(200).header("Access-Control-Allow-Origin", "*").json(playLists);
+        res.status(200).json(playLists);
     } else {
-        res.status(400).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Playlist not found' });
+        res.status(400).json({ mesage: 'Playlist not found' });
     }
 }
 
@@ -43,9 +43,9 @@ exports.createPlaylist = (req, res) => {
     
         Playlists.playlists.push(playlist);
     
-        res.status(201).header("Access-Control-Allow-Origin", "*").json({ message: 'Playlist created successfully', playlist });    
+        res.status(201).json({ message: 'Playlist created successfully', playlist });    
     } else {
-        res.status(400).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Request body playlist not fully completed' });
+        res.status(400).json({ mesage: 'Request body playlist not fully completed' });
     }
 }
 
@@ -58,7 +58,7 @@ exports.addSongPlaylist = (req, res) => {
 
     playList[0].song.push(songList[0]);
     
-    res.status(201).header("Access-Control-Allow-Origin", "*").json({ message: 'Song added to playlist successfully.', playList });
+    res.status(201).json({ message: 'Song added to playlist successfully.', playList });
 }
 
 exports.deleteSongPlaylist = (req, res) => {
@@ -72,5 +72,5 @@ exports.deleteSongPlaylist = (req, res) => {
 
     console.log(playList[0].song)
     
-    res.status(200).header("Access-Control-Allow-Origin", "*").json({ message: 'Song deleted in playlist successfully.', playList });
+    res.status(200).json({ message: 'Song deleted in playlist successfully.', playList });
 }

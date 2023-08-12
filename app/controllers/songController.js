@@ -7,15 +7,15 @@ exports.getAllSong = (req, res) => {
         const songLists = Songs.songs.filter(song => song.title.toLowerCase().includes(reqTitle.toLowerCase()));
     
         if(songLists.length > 0){
-            res.status(200).header("Access-Control-Allow-Origin", "*").json({ songs: songLists });
+            res.status(200).json({ songs: songLists });
         } else {
-            res.status(404).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Song not found' });
+            res.status(404).json({ mesage: 'Song not found' });
         }
     } else {
         if(Songs.songs.length > 0){
-            res.status(200).header("Access-Control-Allow-Origin", "*").json(Songs);
+            res.status(200).json(Songs);
         } else {
-            res.status(404).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Song not found' });
+            res.status(404).json({ mesage: 'Song not found' });
         }
     }
 }
@@ -24,9 +24,9 @@ exports.getMostPlayedSong = (req, res) => {
     const songLists = Songs.songs.sort((song1, song2) => song2.playCount - song1.playCount);
     
     if(songLists.length > 0){
-        res.status(200).header("Access-Control-Allow-Origin", "*").json({ songs: songLists });
+        res.status(200).json({ songs: songLists });
     } else {
-        res.status(404).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Song not found' });
+        res.status(404).json({ mesage: 'Song not found' });
     }
 }
 
@@ -36,9 +36,9 @@ exports.getOneSong = (req, res) => {
     const songLists = Songs.songs.filter(song => song.song_id === song_id);
 
     if(songLists.length > 0){
-        res.status(200).header("Access-Control-Allow-Origin", "*").json({ song: songLists });
+        res.status(200).json({ song: songLists });
     } else {
-        res.status(404).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Song not found' });
+        res.status(404).json({ mesage: 'Song not found' });
     }
 }
 
@@ -50,9 +50,9 @@ exports.playSong = (req, res) => {
     songLists[0].playCount++;
     
     if(songLists.length > 0){
-        res.status(200).header("Access-Control-Allow-Origin", "*").json({ message: 'Song is now playing.', song: songLists });
+        res.status(200).json({ message: 'Song is now playing.', song: songLists });
     } else {
-        res.status(404).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Song not found' });
+        res.status(404).json({ mesage: 'Song not found' });
     }
 }
 
@@ -66,8 +66,8 @@ exports.createSong = (req, res) => {
     
         Songs.songs.push(song);
     
-        res.status(201).header("Access-Control-Allow-Origin", "*").json({ message: 'Song added successfully', song });    
+        res.status(201).json({ message: 'Song added successfully', song });    
     } else {
-        res.status(404).header("Access-Control-Allow-Origin", "*").json({ mesage: 'Request body song not fully completed' });
+        res.status(404).json({ mesage: 'Request body song not fully completed' });
     }
 }
